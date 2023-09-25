@@ -13,14 +13,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.product-grid-item {
-  background: #ddebe8;
-  max-width: 150px;
-}
-
-.product-image {
-  width: 100%;
-}
-</style>
