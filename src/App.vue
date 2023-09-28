@@ -2,7 +2,7 @@
   <div class="w-full px-4 py-4 bg-green-50">
     <!-- Retailer Logo -->
     <div class="mb-4 text-center" :class="{ hidden: hideLogo }">
-      <h1 class="text-xl font-bold">Footwear Retailer</h1>
+      <h1 class="text-xl font-bold">Ormeline's Trainer Shop</h1>
     </div>
     <!-- Filters and Sorting -->
     <div class="px-4 pt-4 rounded border bg-white sticky top-0 z-10">
@@ -20,9 +20,11 @@
       </div>
     </div>
     <!-- Product Counter -->
-    <p class="my-4 text-left">Showing {{ filteredProducts.length }} products</p>
+    <p class="my-4 text-left font-bold">
+      Showing {{ filteredProducts.length }} products
+    </p>
     <!-- Product Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
       <ProductCard
         v-for="product in sortedProducts"
         :key="product.name"

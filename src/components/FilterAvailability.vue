@@ -1,6 +1,6 @@
 <template>
   <!-- Availability Filter -->
-    <label class="flex items-center text-sm">
+    <label class="flex items-center text-sm font-bold">
       <input type="checkbox" v-model="onlyAvailable" class="mr-2" />
       Show Only Available Products
     </label>

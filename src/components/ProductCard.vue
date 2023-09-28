@@ -11,7 +11,11 @@
       duration-300
     "
   >
-    <img :src="product.image" alt="Product Image" class="object-cover mb-4" />
+    <img
+      :src="product.image"
+      alt="Product Image"
+      class="object-cover mb-4 w-full"
+    />
     <h2 class="font-bold text-sm lg:text-lg mb-2">
       {{ product.brand }} - {{ product.name }}
     </h2>
