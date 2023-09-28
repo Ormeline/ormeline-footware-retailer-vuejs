@@ -1,32 +1,27 @@
 <template>
-  <div class="container mx-auto px-4 py-8">
+  <div class="container mx-auto px-4 py-4 bg-green-50">
     <!-- Retailer Logo -->
-    <div class="mb-8 text-center">
-      <h1 class="text-2xl font-bold">Ormeline's Trainer Shop</h1>
+    <div class="mb-4 text-center">
+      <h1 class="text-xl font-bold">Footwear Retailer</h1>
     </div>
 
     <!-- Filters and Sorting -->
-    <div
-      class="
-        flex flex-col
-        space-y-3
-        mb-6
-        md:flex-row md:space-y-0 md:justify-between
-      "
-    >
-      <FilterCheckbox
-        :brands="brands"
-        @filter-availability="filterAvailability"
-        @filter-brands="filterBrands"
-      ></FilterCheckbox>
-      <SortingDropdown @sort-changed="changeSort"></SortingDropdown>
+    <div class="px-4 pt-4 rounded border bg-white">
+      <div class="flex flex-col mb-4 space-y-5">
+        <FilterCheckbox
+          :brands="brands"
+          @filter-availability="filterAvailability"
+          @filter-brands="filterBrands"
+        ></FilterCheckbox>
+        <SortingDropdown @sort-changed="changeSort"></SortingDropdown>
+      </div>
     </div>
 
     <!-- Product Counter -->
-    <p class="mb-4">Showing {{ filteredProducts.length }} products</p>
+    <p class="my-4 text-left">Showing {{ filteredProducts.length }} products</p>
 
     <!-- Product Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
       <ProductCard
         v-for="product in sortedProducts"
         :key="product.name"
@@ -40,7 +35,7 @@
 import ProductCard from './components/ProductCard.vue';
 import FilterCheckbox from './components/FilterCheckbox.vue';
 import SortingDropdown from './components/SortingDropdown.vue';
-import products from './data/products.json';
+import importedProducts from './data/products.json';
 
 export default {
   components: {
@@ -50,7 +45,7 @@ export default {
   },
   data() {
     return {
-      products,
+      products: importedProducts,
       onlyAvailable: false,
       selectedBrands: [],
       sortOption: 'price-asc',

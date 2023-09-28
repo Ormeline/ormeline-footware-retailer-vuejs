@@ -7,14 +7,11 @@
       shadow-md
       hover:shadow-lg
       transition-shadow
+      bg-white
       duration-300
     "
   >
-    <img
-      :src="product.image"
-      alt="Product Image"
-      class="w-full h-96 object-cover mb-4"
-    />
+    <img :src="product.image" alt="Product Image" class="object-cover mb-4" />
     <h2 class="font-bold text-xl mb-2">
       {{ product.brand }} - {{ product.name }}
     </h2>
