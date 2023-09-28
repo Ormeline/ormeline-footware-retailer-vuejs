@@ -1,11 +1,4 @@
 <template>
-  <!-- Availability Filter -->
-    <label class="flex items-center text-sm">
-      <input type="checkbox" v-model="onlyAvailable" class="mr-2" />
-      Show Only Available Products
-    </label>
-  </div>
-  <!-- Brand Filter -->
   <div>
     <p class="font-bold mb-2 text-sm">Filter by Brand:</p>
     <div class="grid md:grid-cols-5 grid-cols-1 gap-2">
@@ -38,10 +31,8 @@ export default {
       selectedBrands: [],
     };
   },
+  emits: 'filter-brands',
   watch: {
-    onlyAvailable(value) {
-      this.$emit('filter-availability', value);
-    },
     selectedBrands(value) {
       this.$emit('filter-brands', value);
     },

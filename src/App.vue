@@ -1,27 +1,28 @@
 <template>
-  <div class="container mx-auto px-4 py-4 bg-green-50">
+  <div class="w-full px-4 py-4 bg-green-50">
     <!-- Retailer Logo -->
-    <div class="mb-4 text-center">
+    <div class="mb-4 text-center" :class="{ hidden: hideLogo }">
       <h1 class="text-xl font-bold">Footwear Retailer</h1>
     </div>
-
     <!-- Filters and Sorting -->
-    <div class="px-4 pt-4 rounded border bg-white">
-      <div class="flex flex-col mb-4 space-y-5">
-        <FilterCheckbox
+    <div class="px-4 pt-4 rounded border bg-white sticky top-0 z-10">
+      <div class="mb-4">
+        <div class="flex flex-row justify-between mb-4">
+          <FilterAvailability
+            @filter-availability="filterAvailability"
+          ></FilterAvailability>
+          <SortingDropdown @sort-changed="changeSort"></SortingDropdown>
+        </div>
+        <FilterBrand
           :brands="brands"
-          @filter-availability="filterAvailability"
           @filter-brands="filterBrands"
-        ></FilterCheckbox>
-        <SortingDropdown @sort-changed="changeSort"></SortingDropdown>
+        ></FilterBrand>
       </div>
     </div>
-
     <!-- Product Counter -->
     <p class="my-4 text-left">Showing {{ filteredProducts.length }} products</p>
-
     <!-- Product Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-8">
       <ProductCard
         v-for="product in sortedProducts"
         :key="product.name"
@@ -33,14 +34,16 @@
 
 <script>
 import ProductCard from './components/ProductCard.vue';
-import FilterCheckbox from './components/FilterCheckbox.vue';
+import FilterAvailability from './components/FilterAvailability.vue';
+import FilterBrand from './components/FilterBrand.vue';
 import SortingDropdown from './components/SortingDropdown.vue';
 import importedProducts from './data/products.json';
 
 export default {
   components: {
     ProductCard,
-    FilterCheckbox,
+    FilterAvailability,
+    FilterBrand,
     SortingDropdown,
   },
   data() {
@@ -49,7 +52,14 @@ export default {
       onlyAvailable: false,
       selectedBrands: [],
       sortOption: 'price-asc',
+      hideLogo: false,
     };
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll);
   },
   computed: {
     brands() {
@@ -92,6 +102,9 @@ export default {
     },
     changeSort(value) {
       this.sortOption = value;
+    },
+    handleScroll() {
+      this.hideLogo = window.scrollY > 10;
     },
   },
 };
