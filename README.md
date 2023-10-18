@@ -1,6 +1,6 @@
 # Footware Retailer Listing Page using Vue.js (improved)
 
-You are provided with a set of products and are required to create a products listing page for a footwear retailer.
+You are provided with a set of products and are required to create a products listing page for a footwear retailer. 
 
 ## Implement the following functionality and styling:
 
